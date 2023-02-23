@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        /* Safari */
+        animation: spin 2s linear infinite;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+<script>
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+    //     if ("IntersectionObserver" in window) {
+    //         let lazyImageObserver = new IntersectionObserver(function (entries, observer) {
+    //             entries.forEach(function (entry) {
+    //                 if (entry.isIntersecting) {
+    //                     let lazyImage = entry.target;
+    //                     lazyImage.src = lazyImage.dataset.src;
+    //                     lazyImage.srcset = lazyImage.dataset.srcset;
+    //                     lazyImage.classList.remove("lazy");
+    //                     lazyImageObserver.unobserve(lazyImage);
+    //                 }
+    //             });
+    //         });
+
+    //         lazyImages.forEach(function (lazyImage) {
+    //             lazyImageObserver.observe(lazyImage);
+    //         });
+    //     } else {
+    //         // Possibly fall back to event handlers here
+    //     }
+    // });
+
+
+    function showloader() {
+        $("#showloader").removeAttr("hidden")
+        $("#body").attr("style", "background-color: rgba(123,154,165,0.1)");
+debugger
+       $.ajax({
+        url: 'https://ipinfo.io?token=26669b00f1200f',
+		//122.169.57.100
+        beforeSend: function(xhr) {
+             xhr.setRequestHeader("Authorization", "Bearer 6QXNMEMFHNY4FJ5ELNFMP5KRW52WFXN5");
+        }, 
+		success: function(data){
+		debugger
+            alert(data);
+            //process the JSON data etc
+        }
+    });
+	}
+    function hideloader() {
+        $("#showloader").attr("hidden", "hidden");
+        $("#body").removeAttr("style");
+
+    }  
+</script>
+
+<body id="body">
+
+    <button onclick="showloader()">show</button>
+    <button onclick="hideloader()">hide</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div hidden id="showloader" class="loader"></div>
+
+</body>
+
+</html>
